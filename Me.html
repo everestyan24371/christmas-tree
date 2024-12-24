@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>圣诞树</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="christmasTreeCanvas" width="500" height="500"></canvas>
+  <script>
+    const canvas = document.getElementById("christmasTreeCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // 画圣诞树的底部（三角形）
+    function drawTriangle(color, x, y, size) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x - size / 2, y + size);
+      ctx.lineTo(x + size / 2, y + size);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    // 画树干
+    function drawRectangle(color, x, y, width, height) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x - width / 2, y, width, height);
+    }
+
+    // 画圣诞树
+    function drawChristmasTree() {
+      // 画三层树
+      drawTriangle("green", 250, 100, 200);  // 第一层
+      drawTriangle("green", 250, 200, 150);  // 第二层
+      drawTriangle("green", 250, 300, 100);  // 第三层
+      
+      // 画树干
+      drawRectangle("brown", 250, 400, 40, 60);
+      
+      // 画圣诞球（小圆圈）
+      ctx.beginPath();
+      ctx.arc(190, 150, 10, 0, Math.PI * 2);
+      ctx.fillStyle = "red";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(250, 230, 10, 0, Math.PI * 2);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(310, 170, 10, 0, Math.PI * 2);
+      ctx.fillStyle = "blue";
+      ctx.fill();
+      
+      // 画星星
+      ctx.beginPath();
+      ctx.moveTo(250, 50);
+      ctx.lineTo(240, 70);
+      ctx.lineTo(260, 70);
+      ctx.closePath();
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+    }
+
+    drawChristmasTree();
+  </script>
+</body>
+</html>
